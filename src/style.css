@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", sans-serif;
+  --font-display: "Barlow Condensed", sans-serif;
+}
+
+:root {
+  font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #332d2d;
+  background: #fff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  overflow-x: hidden;
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+body:has(.portfolio-page)::before {
+  position: fixed;
+  z-index: -1;
+  top: 20%;
+  left: 50%;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #4f46e5 0%, #3b82f6 35%, #60a5fa 60%, #a5f3fc 85%, transparent 100%);
+  content: "";
+  filter: blur(70px);
+  opacity: 0.48;
+  pointer-events: none;
+  transform: translate3d(-50%, -20%, 0);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.scroll-progress-bar {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 100ms linear;
+  will-change: transform;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(24px, 12px, 0) scale(0.985);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1), transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal[data-scroll-direction="up"] {
+  transform: translate3d(-24px, -12px, 0) scale(0.985);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  .portfolio-page > div:nth-of-type(2) {
+    max-width: 896px;
+  }
+}
+
+@media (min-width: 768px) and (max-height: 800px) {
+  .portfolio-header {
+    margin-block: 1rem;
+  }
+
+  .portfolio-avatar {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .portfolio-social-links {
+    padding-block: 1rem;
+  }
+
+  .portfolio-hero-video {
+    max-width: min(100%, 640px);
+  }
+}
+
+.feedback-gallery {
+  perspective: 1000px;
+}
+
+.feedback-card {
+  --card-offset: 42px;
+  --card-rotation: -2deg;
+  opacity: 0;
+  transform: translate3d(0, var(--card-offset), 0) rotate(var(--card-rotation)) scale(0.94);
+  transform-origin: center bottom;
+  transition: opacity 550ms cubic-bezier(0.16, 1, 0.3, 1), transform 550ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.feedback-card:nth-child(even) {
+  --card-rotation: 2deg;
+}
+
+.feedback-gallery[data-scroll-direction="up"] .feedback-card {
+  --card-offset: -42px;
+  --card-rotation: 2deg;
+  transform-origin: center top;
+}
+
+.feedback-gallery[data-scroll-direction="up"] .feedback-card:nth-child(even) {
+  --card-rotation: -2deg;
+}
+
+.feedback-card.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) rotate(0) scale(1);
+}
+
+.infinite-carousel-track {
+  animation: infinite-scroll 22s linear infinite;
+  width: max-content;
+  will-change: transform;
+}
+
+.infinite-carousel-wrapper:hover .infinite-carousel-track {
+  animation-play-state: paused;
+}
+
+.contact-floating-logo {
+  animation: logo-float 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes logo-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes infinite-scroll {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .feedback-card {
+    transition-delay: 0ms !important;
+  }
+}

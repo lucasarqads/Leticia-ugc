@@ -10,3 +10,7 @@ Thumbs.db
 # Arquivos de log e temporários
 *.log
 *.tmp
+
+# Dependências e arquivos de build
+/node_modules/
+/dist/
