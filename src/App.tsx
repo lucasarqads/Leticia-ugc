@@ -29,8 +29,8 @@ const feedbacks = [
 const works = [
   ["video1.mp4", "campo.PNG", "Qualidade e estilo em campo", "Curadoria de peças clássicas"],
   ["video2.mp4", "mac.PNG", "Beleza para todos os gostos", "Looks completos e combinações"],
-  ["video3.mp4", "cabelo.PNG", "Para os dias de bad hair day", "Higienização e restauração"],
-  ["video4.mp4", "oculos.PNG", "Acessórios que dão diferença", "Confira os novos garimpos"],
+  ["video3.mp4", "oculos.PNG", "Para os dias de bad hair day", "Higienização e restauração"],
+  ["video4.mp4", "cabelo.PNG", "Acessórios que dão diferença", "Confira os novos garimpos"],
 ];
 
 const coupons: Coupon[] = [
